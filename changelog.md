@@ -718,3 +718,11 @@
 - 解決生產環境中前端無法連接後端API的問題
 - 前端現在通過Nginx反向代理正確訪問後端服務
 - 修復市場指數和股票數據無法載入的問題
+
+## [2025-01-27] - 瀏覽器兼容性修復
+### 修復
+- 修復`crypto.randomUUID`在舊瀏覽器中不支援的問題
+- 新增`generateUUID()`兼容性函數，提供降級方案
+- 優先使用原生`crypto.randomUUID`，不支援時使用Math.random生成UUID v4格式
+- 更新智慧小豐頁面和投資筆記頁面，使用兼容性UUID生成函數
+- 解決在某些環境中出現的"crypto.randomUUID is not a function"錯誤
