@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, useCallback } from "react"
+import { useState, useRef, useEffect, useCallback, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import Image from "next/image"
 import { Send, X, ChevronLeft, ChevronRight, History, Clock, FileText } from "lucide-react"
@@ -48,7 +48,7 @@ interface NewsContent {
   sections?: string;
 }
 
-export default function SmartFengPage() {
+function SmartFengPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [messages, setMessages] = useState<Message[]>([
@@ -1406,5 +1406,13 @@ ${note.source ? `來源: ${note.source}` : ''}
         </div>
       </div>
     </div>
+  )
+}
+
+export default function SmartFengPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <SmartFengPageContent />
+    </Suspense>
   )
 }
