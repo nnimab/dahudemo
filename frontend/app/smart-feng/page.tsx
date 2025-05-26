@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback, Suspense } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
+import { generateUUID } from "@/lib/utils"
 import Image from "next/image"
 import { Send, X, ChevronLeft, ChevronRight, History, Clock, FileText } from "lucide-react"
 import Markdown from "react-markdown"
@@ -392,7 +393,7 @@ ${note.source ? `來源: ${note.source}` : ''}
           if (!hasUserMessages) return;
           
           const existingHistories = [...chatHistoriesRef.current];
-          const chatId = currentChatIdRef.current || crypto.randomUUID();
+          const chatId = currentChatIdRef.current || generateUUID();
           
           // 為對話生成標題 (使用第一條用戶消息)
           const firstUserMsg = messagesRef.current.find(msg => msg.role === "user");
@@ -466,7 +467,7 @@ ${note.source ? `來源: ${note.source}` : ''}
     if (!hasUserMessages && !forceSave) return;
     
     const existingHistories = [...chatHistories];
-    const chatId = currentChatId || crypto.randomUUID();
+    const chatId = currentChatId || generateUUID();
     
     // 為對話生成標題 (使用第一條用戶消息)
     const firstUserMsg = messages.find(msg => msg.role === "user");
@@ -562,7 +563,7 @@ ${note.source ? `來源: ${note.source}` : ''}
     ]);
     
     // 生成新的對話ID
-    const newChatId = crypto.randomUUID();
+    const newChatId = generateUUID();
     setCurrentChatId(newChatId);
     setIsNewChat(true);
     localStorage.setItem("smartFengCurrentChatId", newChatId);
@@ -587,7 +588,7 @@ ${note.source ? `來源: ${note.source}` : ''}
   useEffect(() => {
     let storedUserId = localStorage.getItem("smartFengUserId")
     if (!storedUserId) {
-      storedUserId = crypto.randomUUID()
+      storedUserId = generateUUID()
       localStorage.setItem("smartFengUserId", storedUserId)
     }
     setUserId(storedUserId)
@@ -636,7 +637,7 @@ ${note.source ? `來源: ${note.source}` : ''}
     // 如果是新對話，保存第一條消息作為對話標題
     if (isNewChat && messages.length === 1) {
       setIsNewChat(false);
-      const chatId = crypto.randomUUID();
+      const chatId = generateUUID();
       setCurrentChatId(chatId);
       localStorage.setItem("smartFengCurrentChatId", chatId);
     }
@@ -954,7 +955,7 @@ ${note.source ? `來源: ${note.source}` : ''}
       ]);
       
       // 建立新對話ID
-      const newChatId = crypto.randomUUID();
+      const newChatId = generateUUID();
       setCurrentChatId(newChatId);
       localStorage.setItem("smartFengCurrentChatId", newChatId);
       

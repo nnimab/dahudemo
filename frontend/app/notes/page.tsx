@@ -5,6 +5,7 @@ import { ArrowLeft, Plus, Trash2, Edit, Save, X, Search, Calendar } from "lucide
 import { useRouter, useSearchParams } from "next/navigation"
 import TopNavigation from "../../components/top-navigation"
 import MarketIndicesHeader from "../../components/market-indices-header"
+import { generateUUID } from "@/lib/utils"
 
 interface Note {
   id: string;
@@ -47,7 +48,7 @@ function NotesPageContent() {
         if (newsItem) {
           // 創建一個新筆記
           const newNote: Note = {
-            id: crypto.randomUUID(),
+            id: generateUUID(),
             title: newsItem.title,
             content: newsItem.content,
             source: `來源：${newsItem.newsCategory}`,
@@ -74,7 +75,7 @@ function NotesPageContent() {
   // 添加新筆記
   const addNote = () => {
     const newNote: Note = {
-      id: crypto.randomUUID(),
+      id: generateUUID(),
       title: "",
       content: "",
       date: new Date().toISOString().split('T')[0]
