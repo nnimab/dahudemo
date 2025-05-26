@@ -3,7 +3,7 @@
 import { ChevronRight } from "lucide-react"
 import { useEffect, useState } from "react"
 import MarketIndicesHeader from "./market-indices-header"
-import { getHotStocks, HotStockInfo, getRealtimeMarketIndices, RealtimeIndexData } from "@/lib/apiClient"
+import { getHotStocks, HotStockInfo, getRealtimeMarketIndices, RealtimeIndexData } from "../lib/apiClient"
 
 export default function StockSelectionPage() {
   const [hotStocks, setHotStocks] = useState<HotStockInfo[]>([])

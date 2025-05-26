@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { ChevronDown } from "lucide-react";
 // 引入新的 apiClient 函式和類型
-import { getRealtimeMarketIndices, type RealtimeIndexData } from '@/lib/apiClient'; 
+import { getRealtimeMarketIndices, type RealtimeIndexData } from '../lib/apiClient'; 
 
 interface MarketIndicesHeaderProps {
   className?: string;
