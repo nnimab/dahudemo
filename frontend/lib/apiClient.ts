@@ -48,8 +48,8 @@ export interface RealtimeIndexData {
   raw_z: string; 
 }
 
-// Read API base URL from environment variable, default to localhost for development
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
+// Read API base URL from environment variable, default to relative path for production
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || '';
 
 /**
  * Fetches historical stock data from the API and calculates the latest price and percentage change.
