@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { ArrowLeft, Plus, Trash2, Edit, Save, X, Search, Calendar } from "lucide-react"
 import { useRouter, useSearchParams } from "next/navigation"
 import TopNavigation from "../../components/top-navigation"
@@ -15,7 +15,7 @@ interface Note {
   tags?: string[];
 }
 
-export default function NotesPage() {
+function NotesPageContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [notes, setNotes] = useState<Note[]>([])
@@ -315,5 +315,13 @@ export default function NotesPage() {
         </div>
       )}
     </div>
+  )
+}
+
+export default function NotesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <NotesPageContent />
+    </Suspense>
   )
 } 
