@@ -1,5 +1,53 @@
 # Changelog
 
+## [2025-01-27] - 部署準備與安全修復
+
+### 🚨 安全修復
+- **修復嚴重安全漏洞**：移除 `backend/app/api/endpoints/assistant.py` 中硬編碼的 Google Gemini API 金鑰
+- 改為從環境變數 `GEMINI_API_KEY` 讀取 API 金鑰
+- 創建 `backend/env.example` 環境變數範例文件
+
+### 新增部署支援
+- **Docker 容器化**：
+  - 新增 `Dockerfile.backend` 用於後端容器化
+  - 新增 `Dockerfile.frontend` 用於前端容器化  
+  - 新增 `docker-compose.yml` 用於本地開發和部署
+- **前端配置優化**：
+  - 更新 `frontend/next.config.mjs` 支援生產環境部署
+  - 添加 `output: 'standalone'` 支援 Docker 部署
+  - 動態後端 URL 配置支援多環境部署
+- **部署文檔**：
+  - 創建詳細的 `deploy-guide.md` 部署指南
+  - 包含雲端平台、Docker、VPS 三種部署方案
+  - 提供安全建議、成本估算和故障排除指南
+
+### 技術改進
+- 環境變數管理標準化
+- 支援多種部署環境（開發、測試、生產）
+- 容器化部署最佳實踐
+- 生產環境安全配置指南
+
+### 部署選項
+1. **雲端平台**：Vercel（前端）+ Railway（後端）- 免費方案
+2. **容器化**：Docker + VPS 部署 - 約 $15-30/月
+3. **傳統部署**：手動配置 VPS 環境
+
+## [2024-08-12] - 項目版本控制與GitHub整合
+
+### 新增
+- 初始化Git版本控制系統
+- 創建.gitignore文件，排除不必要的文件和目錄
+- 準備將項目推送至GitHub倉庫
+- 設置遠程倉庫連接
+- 成功將項目推送到GitHub (https://github.com/nnimab/dahudemo)
+
+### 技術說明
+- 使用Git進行版本控制，確保代碼可追蹤性和協作開發
+- 配置適當的.gitignore文件，優化倉庫大小和內容
+- 解決前端目錄中的子Git倉庫問題
+- 保持統一的代碼行尾格式
+- 建立與GitHub遠程倉庫的連接並完成初始推送
+
 ## [2024-07-31] - 返回按鈕功能優化
 
 ### 修改

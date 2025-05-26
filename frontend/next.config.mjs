@@ -21,11 +21,16 @@ const nextConfig = {
     }
     return config;
   },
+  // 支援獨立輸出用於 Docker 部署
+  output: 'standalone',
   async rewrites() {
+    // 根據環境變數決定後端 URL
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+    
     return [
       {
         source: '/api/:path*',
-        destination: 'http://localhost:8000/api/:path*', // 代理到後端 FastAPI
+        destination: `${backendUrl}/api/:path*`, // 代理到後端 FastAPI
       },
     ]
   },

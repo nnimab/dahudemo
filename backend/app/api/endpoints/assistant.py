@@ -8,7 +8,8 @@ from datetime import datetime
 
 router = APIRouter()
 
-GEMINI_API_KEY = "AIzaSyDGha5Nc_qsOLA_yN6XIUKynCoMyLuPcf8"
+# 修復安全問題：從環境變數讀取 API 金鑰
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 if GEMINI_API_KEY:
     genai.configure(api_key=GEMINI_API_KEY)
 else:
